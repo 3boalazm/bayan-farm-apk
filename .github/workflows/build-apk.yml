@@ -20,9 +20,6 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,27 +28,18 @@ jobs:
       - name: Install Capacitor
         run: npm install
 
-      - name: Sync Capacitor
+      - name: Sync Capacitor to Android
         run: npx cap sync android
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.2'
-
-      - name: Grant gradlew permission
+      - name: Grant gradlew permission + Build APK
         working-directory: android
         run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.2
-          fi
           chmod +x gradlew
-
-      - name: Build Debug APK
-        working-directory: android
-        env:
-          ANDROID_HOME: ${{ env.ANDROID_HOME }}
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleDebug \
+            --no-daemon \
+            --gradle-user-home /home/runner/.gradle \
+            -Dorg.gradle.jvmargs="-Xmx2048m" \
+            --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
