@@ -20,14 +20,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Capacitor
+      - name: Install
         run: npm install
 
-      - name: Recreate Android project
-        run: |
-          rm -rf android
-          npx cap add android
-          npx cap sync android
+      - name: Sync
+        run: npx cap sync android
 
       - name: Build APK
         working-directory: android
