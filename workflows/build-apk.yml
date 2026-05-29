@@ -23,12 +23,11 @@ jobs:
       - name: Install Capacitor
         run: npm install
 
-      - name: Capacitor sync
-        run: npx cap sync android
-
-      - name: Generate Gradle wrapper
-        working-directory: android
-        run: gradle wrapper --gradle-version 8.7
+      - name: Recreate Android project
+        run: |
+          rm -rf android
+          npx cap add android
+          npx cap sync android
 
       - name: Build APK
         working-directory: android
