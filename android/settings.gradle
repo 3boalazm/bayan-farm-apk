@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "BayanFarm"
+
+apply from: "../node_modules/@capacitor/android/capacitor.settings.gradle"

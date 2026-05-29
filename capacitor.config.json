@@ -1,0 +1,36 @@
+{
+  "appId": "com.bayan.farm",
+  "appName": "بيان المزرعة",
+  "webDir": "www",
+  "server": {
+    "url": "https://farm-project-puce.vercel.app",
+    "androidScheme": "https",
+    "cleartext": false,
+    "hostname": "farm-project-puce.vercel.app",
+    "allowNavigation": [
+      "*.vercel.app",
+      "*.firebasedatabase.app"
+    ]
+  },
+  "android": {
+    "backgroundColor": "#0a0a0a",
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "minWebViewVersion": 67
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2500,
+      "launchAutoHide": true,
+      "backgroundColor": "#0a0a0a",
+      "androidSplashResourceName": "splash",
+      "showSpinner": true,
+      "spinnerColor": "#ff6b35"
+    },
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#0a0a0a"
+    }
+  }
+}
